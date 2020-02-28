@@ -25,7 +25,7 @@ namespace fegyveres
             Felpakol(fegyvertár); //Az összes fegyvert berakja a fegyvertárba és feltölti a fegyvertárat
             Listázó(fegyvertár); //Kiírja a képernyőre aktuálisan milyen fegyvereink vannak és a bennük lévő töltények számát
             Console.WriteLine($"{FegyverSzám(fegyvertár)} db fegyver van a tárban.\n");
-            Kivesz(fegyvertár); //Egy fegyvert kivesz a fegyvertárból
+            Kivesz(fegyvertár, fegyverek.Puska); //Egy fegyvert kivesz a fegyvertárból
             Felvesz(fegyvertár, fegyverek.Puska); //Egy fegyvert berak a tár végére
             //Kiürít(fegyvertár); //Kiürítí a fegyvertárat
             int dbt = Csekkol(fegyvertár, fegyverek.Ágyú); //Egy adott fegyverben hány töltény van
@@ -112,8 +112,23 @@ namespace fegyveres
             
         }
 
-        static void Kivesz(List<Fegyver> fegyvertár)
+        static void Kivesz(List<Fegyver> fegyvertár, fegyverek aktFegyver)
         {
+            bool van = false;
+            int i = 0;
+            foreach (Fegyver f in fegyvertár)
+            {
+                if (f.név == aktFegyver)
+                {
+                    van = true;
+                    break;
+                }
+                i++;
+            }
+            if (van)
+            {
+                fegyvertár.RemoveAt(i);
+            }
 
         }
 
